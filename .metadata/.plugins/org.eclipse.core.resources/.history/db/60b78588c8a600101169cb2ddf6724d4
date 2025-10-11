@@ -1,0 +1,71 @@
+#include "wh1602.h"
+#include "stm32f4xx_hal.h"
+
+// Pulse enable
+static void wh1602_Enable(void) {
+    HAL_GPIO_WritePin(WH1602_EN_GPIO, WH1602_EN_PIN, GPIO_PIN_SET);
+    HAL_Delay(1);
+    HAL_GPIO_WritePin(WH1602_EN_GPIO, WH1602_EN_PIN, GPIO_PIN_RESET);
+    HAL_Delay(1);
+}
+
+// Write all 8 bits
+static void wh1602_Write8(uint8_t data) {
+    HAL_GPIO_WritePin(WH1602_D0_GPIO, WH1602_D0_PIN, (data >> 0) & 0x01);
+    HAL_GPIO_WritePin(WH1602_D1_GPIO, WH1602_D1_PIN, (data >> 1) & 0x01);
+    HAL_GPIO_WritePin(WH1602_D2_GPIO, WH1602_D2_PIN, (data >> 2) & 0x01);
+    HAL_GPIO_WritePin(WH1602_D3_GPIO, WH1602_D3_PIN, (data >> 3) & 0x01);
+    HAL_GPIO_WritePin(WH1602_D4_GPIO, WH1602_D4_PIN, (data >> 4) & 0x01);
+    HAL_GPIO_WritePin(WH1602_D5_GPIO, WH1602_D5_PIN, (data >> 5) & 0x01);
+    HAL_GPIO_WritePin(WH1602_D6_GPIO, WH1602_D6_PIN, (data >> 6) & 0x01);
+    HAL_GPIO_WritePin(WH1602_D7_GPIO, WH1602_D7_PIN, (data >> 7) & 0x01);
+    wh1602_Enable();
+}
+
+// Send command/data
+static void wh1602_Send(uint8_t value, uint8_t rs) {
+    HAL_GPIO_WritePin(WH1602_RS_GPIO, WH1602_RS_PIN, rs ? GPIO_PIN_SET : GPIO_PIN_RESET);
+    wh1602_Write8(value);
+    HAL_Delay(2);
+}
+
+// ==== Public API ====
+void wh1602_Init(void) {
+    HAL_Delay(50); // wait for LCD power-up
+
+    // Function set: 8-bit, 2 lines, 5x8 font
+    wh1602_Send(0x38, 0);
+    // Display ON, cursor OFF, blink OFF
+    wh1602_Send(0x0C, 0);
+    // Clear display
+    wh1602_Clear();
+    // Entry mode: increment, no shift
+    wh1602_Send(0x06, 0);
+}
+
+void wh1602_Clear(void) {
+    wh1602_Send(0x01, 0);
+    HAL_Delay(2);
+}
+
+void wh1602_Home(void) {
+    wh1602_Send(0x02, 0);
+    HAL_Delay(2);
+}
+
+void wh1602_SetCursor(uint8_t row, uint8_t col) {
+    uint8_t addr = (row == 0) ? 0x00 : 0x40;
+    addr += col;
+    wh1602_Send(0x80 | addr, 0);
+}
+
+void wh1602_SendChar(char ch) {
+    wh1602_Send((uint8_t)(st), 1);
+}
+
+void wh1602_SendStr(char *str) {
+    while(*str) {
+        wh1602_Send((uint8_t)(*str), 1);
+        str++;
+    }
+}
