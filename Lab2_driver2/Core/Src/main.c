@@ -106,7 +106,7 @@ int main(void)
   LCD_Init();
   LCD_SendChar('1');
   LCD_SendChar('.');
-  // LCD_Clear();
+  LCD_Clear();
   LCD_SendString("Name Surname");
   /* USER CODE END 2 */
 

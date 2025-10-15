@@ -23,11 +23,7 @@ wh1602_Init();
 */
 void LCD_SendChar(char ch)
 {
-	char ch_str[2];
-	ch_str[0] = ch;
-	ch_str[1] = (char)0x0;
-
-	wh1602_SendStr(ch_str);
+	wh1602_SendChar(ch);
 }
 /**
 * @brief Show an array of characters on the display
@@ -37,13 +33,10 @@ void LCD_SendChar(char ch)
 */
 void LCD_SendString(char *str)
 {
-	wh1602_SendStr(str);
-	/*
 	while (*str)
 		{
-		wh1602_Print(*str++);
+		wh1602_SendChar(*str++);
 		}
-	*/
 }
 /**
 * @brief Clear the LCD

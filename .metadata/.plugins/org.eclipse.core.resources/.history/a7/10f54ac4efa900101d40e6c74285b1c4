@@ -31,16 +31,31 @@ static void wh1602_Send(uint8_t value, uint8_t rs) {
 
 // ==== Public API ====
 void wh1602_Init(void) {
-    HAL_Delay(50); // wait for LCD power-up
+	lcd_gpio_init();
 
-    // Function set: 8-bit, 2 lines, 5x8 font
-    wh1602_Send(0x38, 0);
-    // Display ON, cursor OFF, blink OFF
-    wh1602_Send(0x0C, 0);
-    // Clear display
-    wh1602_Clear();
-    // Entry mode: increment, no shift
-    wh1602_Send(0x06, 0);
+	    HAL_GPIO_WritePin(LCD_DB4_PORT, LCD_DB4_PIN, GPIO_PIN_SET);
+	    HAL_GPIO_WritePin(LCD_DB5_PORT, LCD_DB5_PIN, GPIO_PIN_SET);
+	    HAL_GPIO_WritePin(LCD_DB6_PORT, LCD_DB6_PIN, GPIO_PIN_SET);
+	    HAL_GPIO_WritePin(LCD_DB7_PORT, LCD_DB7_PIN, GPIO_PIN_SET);
+	    HAL_GPIO_WritePin(LCD_RS_PORT, LCD_RS_PIN, GPIO_PIN_SET);
+	    HAL_GPIO_WritePin(LCD_RW_PORT, LCD_RW_PIN, GPIO_PIN_SET);
+	    HAL_GPIO_WritePin(LCD_E_PORT, LCD_E_PIN, GPIO_PIN_RESET);
+	    HAL_GPIO_WritePin(LCD_RW_PORT, LCD_RW_PIN, GPIO_PIN_RESET);
+
+	    delay_ms(100);
+	    lcd_write_command_init(0x30);
+	    delay_ms(10);
+	    lcd_write_command_init(0x30);
+	    delay_ms(1);
+	    lcd_write_command_init(0x30);
+	    lcd_wait();
+	    lcd_write_command_init(0x20);
+	    lcd_write_command(0x28);
+	    lcd_write_command(0x08);
+	    lcd_write_command(0x0C);
+	    lcd_write_command(0x01);
+	    delay_ms(2);
+	    lcd_write_command(0x06);
 }
 
 void wh1602_Clear(void) {
@@ -60,7 +75,7 @@ void wh1602_SetCursor(uint8_t row, uint8_t col) {
 }
 
 void wh1602_SendChar(char ch) {
-    wh1602_Send((uint8_t)(st), 1);
+    wh1602_Send((uint8_t)(ch), 1);
 }
 
 void wh1602_SendStr(char *str) {

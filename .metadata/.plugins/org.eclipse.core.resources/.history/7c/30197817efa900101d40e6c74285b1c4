@@ -60,7 +60,7 @@ void wh1602_SetCursor(uint8_t row, uint8_t col) {
 }
 
 void wh1602_SendChar(char ch) {
-    wh1602_Send((uint8_t)(st), 1);
+    wh1602_Send((uint8_t)(ch), 1);
 }
 
 void wh1602_SendStr(char *str) {

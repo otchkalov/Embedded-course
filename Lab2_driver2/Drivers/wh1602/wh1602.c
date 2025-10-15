@@ -1,71 +1,204 @@
+/*
+ * wh1602.c
+ *
+ *  Created on: Oct 4, 2025
+ *      Author: Oleksii Chkalov
+ */
+
+#include <stdint.h>
+#include <string.h>
 #include "wh1602.h"
-#include "stm32f4xx_hal.h"
+#include "hw_delay.h"
 
-// Pulse enable
-static void wh1602_Enable(void) {
-    HAL_GPIO_WritePin(WH1602_EN_GPIO, WH1602_EN_PIN, GPIO_PIN_SET);
-    HAL_Delay(1);
-    HAL_GPIO_WritePin(WH1602_EN_GPIO, WH1602_EN_PIN, GPIO_PIN_RESET);
-    HAL_Delay(1);
+#define LCD_BIT_7_MASK	    (0x80)
+#define LCD_BIT_6_MASK	    (0x40)
+#define LCD_BIT_5_MASK	    (0x20)
+#define LCD_BIT_4_MASK	    (0x10)
+#define LCD_BIT_3_MASK	    (0x08)
+#define LCD_BIT_2_MASK	    (0x04)
+#define LCD_BIT_1_MASK	    (0x02)
+#define LCD_BIT_0_MASK	    (0x01)
+
+static void lcd_write_command_init(uint8_t data);
+static void lcd_set_nibble(uint8_t data);
+inline static void lcd_write(uint8_t data);
+inline static void lcd_wait(void);
+static void lcd_write_command(uint8_t data);
+static void lcd_write_data(uint8_t data);
+static void lcd_strobe_e(void);
+static void lcd_gpio_init();
+
+
+
+static void lcd_write_command_init(uint8_t data)
+{
+	HAL_GPIO_WritePin(LCD_RS_PORT, LCD_RS_PIN, GPIO_PIN_RESET);
+	lcd_set_nibble(data);
+	lcd_strobe_e();
 }
 
-// Write all 8 bits
-static void wh1602_Write8(uint8_t data) {
-    HAL_GPIO_WritePin(WH1602_D0_GPIO, WH1602_D0_PIN, (data >> 0) & 0x01);
-    HAL_GPIO_WritePin(WH1602_D1_GPIO, WH1602_D1_PIN, (data >> 1) & 0x01);
-    HAL_GPIO_WritePin(WH1602_D2_GPIO, WH1602_D2_PIN, (data >> 2) & 0x01);
-    HAL_GPIO_WritePin(WH1602_D3_GPIO, WH1602_D3_PIN, (data >> 3) & 0x01);
-    HAL_GPIO_WritePin(WH1602_D4_GPIO, WH1602_D4_PIN, (data >> 4) & 0x01);
-    HAL_GPIO_WritePin(WH1602_D5_GPIO, WH1602_D5_PIN, (data >> 5) & 0x01);
-    HAL_GPIO_WritePin(WH1602_D6_GPIO, WH1602_D6_PIN, (data >> 6) & 0x01);
-    HAL_GPIO_WritePin(WH1602_D7_GPIO, WH1602_D7_PIN, (data >> 7) & 0x01);
-    wh1602_Enable();
-}
+static void lcd_set_nibble(uint8_t data)
+{
+    if (data & LCD_BIT_7_MASK)
+    {
+        HAL_GPIO_WritePin(LCD_DB7_PORT, LCD_DB7_PIN, GPIO_PIN_SET);
+    }
+    else
+    {
+        HAL_GPIO_WritePin(LCD_DB7_PORT, LCD_DB7_PIN, GPIO_PIN_RESET);
+    }
 
-// Send command/data
-static void wh1602_Send(uint8_t value, uint8_t rs) {
-    HAL_GPIO_WritePin(WH1602_RS_GPIO, WH1602_RS_PIN, rs ? GPIO_PIN_SET : GPIO_PIN_RESET);
-    wh1602_Write8(value);
-    HAL_Delay(2);
-}
+    if (data & LCD_BIT_6_MASK)
+    {
+        HAL_GPIO_WritePin(LCD_DB6_PORT, LCD_DB6_PIN, GPIO_PIN_SET);
+    }
+    else
+    {
+        HAL_GPIO_WritePin(LCD_DB6_PORT, LCD_DB6_PIN, GPIO_PIN_RESET);
+    }
 
-// ==== Public API ====
-void wh1602_Init(void) {
-    HAL_Delay(50); // wait for LCD power-up
+    if (data & LCD_BIT_5_MASK)
+    {
+        HAL_GPIO_WritePin(LCD_DB5_PORT, LCD_DB5_PIN, GPIO_PIN_SET);
+    }
+    else
+    {
+        HAL_GPIO_WritePin(LCD_DB5_PORT, LCD_DB5_PIN, GPIO_PIN_RESET);
+    }
 
-    // Function set: 8-bit, 2 lines, 5x8 font
-    wh1602_Send(0x38, 0);
-    // Display ON, cursor OFF, blink OFF
-    wh1602_Send(0x0C, 0);
-    // Clear display
-    wh1602_Clear();
-    // Entry mode: increment, no shift
-    wh1602_Send(0x06, 0);
-}
-
-void wh1602_Clear(void) {
-    wh1602_Send(0x01, 0);
-    HAL_Delay(2);
-}
-
-void wh1602_Home(void) {
-    wh1602_Send(0x02, 0);
-    HAL_Delay(2);
-}
-
-void wh1602_SetCursor(uint8_t row, uint8_t col) {
-    uint8_t addr = (row == 0) ? 0x00 : 0x40;
-    addr += col;
-    wh1602_Send(0x80 | addr, 0);
-}
-
-void wh1602_SendChar(char ch) {
-    wh1602_Send((uint8_t)(ch), 1);
-}
-
-void wh1602_SendStr(char *str) {
-    while(*str) {
-        wh1602_Send((uint8_t)(*str), 1);
-        str++;
+    if (data & LCD_BIT_4_MASK)
+    {
+        HAL_GPIO_WritePin(LCD_DB4_PORT, LCD_DB4_PIN, GPIO_PIN_SET);
+    }
+    else
+    {
+        HAL_GPIO_WritePin(LCD_DB4_PORT, LCD_DB4_PIN, GPIO_PIN_RESET);
     }
 }
+
+
+inline static void lcd_write(uint8_t data)
+{
+	lcd_set_nibble(data);
+	lcd_strobe_e();
+
+	lcd_set_nibble((data << 4));
+	lcd_strobe_e();
+}
+
+
+inline static void lcd_wait(void)
+{
+	delay_us(LCD_WAIT_DELAY_US);
+}
+
+static void lcd_write_command(uint8_t data)
+{
+	HAL_GPIO_WritePin(LCD_RS_PORT, LCD_RS_PIN, GPIO_PIN_RESET);
+	lcd_write(data);
+	lcd_wait();
+}
+
+
+static void lcd_write_data(uint8_t data)
+{
+	HAL_GPIO_WritePin(LCD_RS_PORT, LCD_RS_PIN, GPIO_PIN_SET);
+	lcd_write(data);
+	lcd_wait();
+}
+
+
+static void lcd_strobe_e(void)
+{
+	HAL_GPIO_WritePin(LCD_E_PORT, LCD_E_PIN, GPIO_PIN_SET);
+	delay_us(LCD_E_PULSE_DURATION);
+	HAL_GPIO_WritePin(LCD_E_PORT, LCD_E_PIN, GPIO_PIN_RESET);
+}
+
+
+static void lcd_gpio_init()
+{
+    GPIO_InitTypeDef gpio;
+
+    /* Enable LCD GPIOs clocks */
+    __HAL_RCC_GPIOE_CLK_ENABLE();
+
+    memset(&gpio, 0, sizeof(GPIO_InitTypeDef));
+
+    gpio.Speed = GPIO_SPEED_MEDIUM;
+    gpio.Mode = GPIO_MODE_OUTPUT_OD;
+    gpio.Pull = GPIO_NOPULL;
+
+    gpio.Pin = LCD_RS_PIN;
+    HAL_GPIO_Init(LCD_RS_PORT, &gpio);
+
+    gpio.Pin = LCD_RW_PIN;
+    HAL_GPIO_Init(LCD_RW_PORT, &gpio);
+
+    gpio.Pin = LCD_E_PIN;
+    HAL_GPIO_Init(LCD_E_PORT, &gpio);
+
+    gpio.Pin = LCD_DB4_PIN;
+    HAL_GPIO_Init(LCD_DB4_PORT, &gpio);
+
+    gpio.Pin = LCD_DB5_PIN;
+    HAL_GPIO_Init(LCD_DB5_PORT, &gpio);
+
+    gpio.Pin = LCD_DB6_PIN;
+    HAL_GPIO_Init(LCD_DB6_PORT, &gpio);
+
+    gpio.Pin = LCD_DB7_PIN;
+    HAL_GPIO_Init(LCD_DB7_PORT, &gpio);
+}
+
+
+/* -------------------------------------------- */
+
+
+void wh1602_Init(void)
+{
+    lcd_gpio_init();
+
+    HAL_GPIO_WritePin(LCD_DB4_PORT, LCD_DB4_PIN, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(LCD_DB5_PORT, LCD_DB5_PIN, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(LCD_DB6_PORT, LCD_DB6_PIN, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(LCD_DB7_PORT, LCD_DB7_PIN, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(LCD_RS_PORT, LCD_RS_PIN, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(LCD_RW_PORT, LCD_RW_PIN, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(LCD_E_PORT, LCD_E_PIN, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(LCD_RW_PORT, LCD_RW_PIN, GPIO_PIN_RESET);
+
+    delay_ms(100);
+    lcd_write_command_init(0x30);
+    delay_ms(10);
+    lcd_write_command_init(0x30);
+    delay_ms(1);
+    lcd_write_command_init(0x30);
+    lcd_wait();
+    lcd_write_command_init(0x20);
+    lcd_write_command(0x28);
+    lcd_write_command(0x08);
+    lcd_write_command(0x0C);
+    lcd_write_command(0x01);
+    delay_ms(2);
+    lcd_write_command(0x06);
+}
+
+
+
+void wh1602_Command(uint8_t dt)
+{
+	lcd_write_command(dt);
+}
+
+void wh1602_SendChar(char ch)
+{
+	lcd_write_data((uint8_t)ch);
+}
+
+void wh1602_Clear(void){
+	lcd_write_command(0x01);//Clear display
+	delay_ms(2);
+}
+
+

@@ -1,6 +1,6 @@
 /**
 * @file wh1602.h
-* @author Oleksii Chkalov
+* @author Ivan Kozemchuk
 * @brief wh1602 driver
 * @version 0.1
 * @date 2024-09-13

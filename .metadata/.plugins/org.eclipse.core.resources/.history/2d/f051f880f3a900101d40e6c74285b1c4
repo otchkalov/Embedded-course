@@ -104,10 +104,10 @@ int main(void)
   MX_USB_HOST_Init();
   /* USER CODE BEGIN 2 */
   LCD_Init();
-  // LCD_SendChar('1');
-  // LCD_SendChar('.');
-  LCD_Clear();
-  // LCD_SendString("Name Surname");
+  LCD_SendChar('1');
+  LCD_SendChar('.');
+  // LCD_Clear();
+  LCD_SendString("Name Surname");
   /* USER CODE END 2 */
 
   /* Infinite loop */
