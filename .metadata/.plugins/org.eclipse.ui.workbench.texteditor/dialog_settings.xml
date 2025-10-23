@@ -3,6 +3,8 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="StartThreadLED"/>
+		<item value="USER CODE BEGIN 4"/>
 		<item value="lcd_write"/>
 		<item value="temper"/>
 	</list>
