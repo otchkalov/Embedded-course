@@ -1,14 +1,21 @@
-20:39:49 **** Incremental Build of configuration Debug for project Lab3_2 ****
+20:23:21 **** Incremental Build of configuration Debug for project Lab3_t1 ****
 make -j16 all 
-arm-none-eabi-size  Lab3_2.elf 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "Lab3_t1.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/oleksii/STM32CubeIDE/workspace_1.19.0/workspace_embedded/Lab3_t1/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab3_t1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Lab3_t1.elf
+ 
+arm-none-eabi-size  Lab3_t1.elf 
+arm-none-eabi-objdump -h -S Lab3_t1.elf  > "Lab3_t1.list"
    text	   data	    bss	    dec	    hex	filename
-  26376	    108	  20972	  47456	   b960	Lab3_2.elf
+  27084	    108	  20980	  48172	   bc2c	Lab3_t1.elf
 Finished building: default.size.stdout
  
-20:39:51 **** Incremental Build of configuration Debug for project Lab3_2 ****
+Finished building: Lab3_t1.list
+ 
+20:23:38 **** Incremental Build of configuration Debug for project Lab3_t1 ****
 make -j16 all 
-arm-none-eabi-size  Lab3_2.elf 
+arm-none-eabi-size  Lab3_t1.elf 
    text	   data	    bss	    dec	    hex	filename
-  26376	    108	  20972	  47456	   b960	Lab3_2.elf
+  27084	    108	  20980	  48172	   bc2c	Lab3_t1.elf
 Finished building: default.size.stdout
  

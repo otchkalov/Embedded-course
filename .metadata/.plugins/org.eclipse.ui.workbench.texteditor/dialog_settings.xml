@@ -3,6 +3,12 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="osMessageQueueNew"/>
+		<item value="readCommand"/>
+		<item value="GPIO_PIN_0"/>
+		<item value="GPIO_PIN_12"/>
+		<item value="/*Configure GPIO pin : MEMS_INT2_Pin */"/>
+		<item value="currentClick"/>
 		<item value="StartThreadLED"/>
 		<item value="USER CODE BEGIN 4"/>
 		<item value="lcd_write"/>

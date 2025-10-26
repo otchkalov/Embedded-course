@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;Lab3_t1/Debug/Lab3_2.elf&apos;" deleteContents="false" description="Delete resource &apos;Lab3_t1/Debug/Lab3_2.elf&apos;" element1="/Lab3_t1/Debug/Lab3_2.elf" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1761503160733"/>
+</session>
