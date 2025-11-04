@@ -3,6 +3,8 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="prev_click"/>
+		<item value="HAL_GPIO_WritePin"/>
 		<item value="osMessageQueueNew"/>
 		<item value="readCommand"/>
 		<item value="GPIO_PIN_0"/>
