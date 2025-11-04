@@ -3,11 +3,15 @@
 	<section name="WorkbenchPreferenceDialog.dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="204"/>
 		<item key="DIALOG_Y_ORIGIN" value="15"/>
-		<item key="DIALOG_WIDTH" value="643"/>
-		<item key="DIALOG_HEIGHT" value="554"/>
+		<item key="DIALOG_WIDTH" value="905"/>
+		<item key="DIALOG_HEIGHT" value="694"/>
 		<item key="DIALOG_FONT_NAME" value="1|Ubuntu|11.0|0|GTK|1|"/>
 	</section>
 	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.ui.wizards.new.file"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.ui.Basic"/>
+		</list>
 		<section name="NewWizard.dialogBounds">
 			<item key="DIALOG_X_ORIGIN" value="624"/>
 			<item key="DIALOG_Y_ORIGIN" value="206"/>
