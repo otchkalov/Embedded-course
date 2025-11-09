@@ -1,0 +1,36 @@
+# STM32CubeIDE specific
+.metadata/
+.project
+.cproject
+.mxproject
+.settings/
+.launch/
+Debug/
+Release/
+build/
+*.elf
+*.hex
+*.bin
+*.map
+*.o
+*.d
+
+# Eclipse specific (as STM32CubeIDE is based on Eclipse)
+.classpath
+.externalToolBuilders/
+.history/
+.recommenders/
+.sts4-cache/
+.apt_generated/
+.factorypath
+.tooling/
+
+# Other common ignored files
+*~
+*.bak
+*.swp
+*.swo
+*.log
+*.tmp
+*.DS_Store
+Thumbs.db

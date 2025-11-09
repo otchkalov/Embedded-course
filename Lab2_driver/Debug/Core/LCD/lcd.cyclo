@@ -1,4 +1,0 @@
-../Core/LCD/lcd.c:15:6:LCD_Init	1
-../Core/LCD/lcd.c:24:6:LCD_SendChar	1
-../Core/LCD/lcd.c:34:6:LCD_SendString	2
-../Core/LCD/lcd.c:45:6:LCD_Clear	1
