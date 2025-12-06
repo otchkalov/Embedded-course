@@ -1,10 +1,10 @@
-21:15:24 **** Incremental Build of configuration Debug for project Lab2_screen ****
-make -j16 all 
+23:23:29 **** Incremental Build of configuration Debug for project Lab2_screen ****
+make -j7 all 
 arm-none-eabi-size  Lab2_screen.elf 
    text	   data	    bss	    dec	    hex	filename
   39964	    124	   4276	  44364	   ad4c	Lab2_screen.elf
 Finished building: default.size.stdout
  
 
-21:15:24 Build Finished. 0 errors, 0 warnings. (took 74ms)
+23:23:29 Build Finished. 0 errors, 0 warnings. (took 212ms)
 

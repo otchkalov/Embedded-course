@@ -1,10 +1,10 @@
-21:56:50 **** Incremental Build of configuration Debug for project gl_starterkit_project ****
-make -j16 all 
+17:45:44 **** Incremental Build of configuration Debug for project gl_starterkit_project ****
+make -j7 all 
 arm-none-eabi-size  gl_starterkit_project.elf 
    text	   data	    bss	    dec	    hex	filename
-  29948	    468	   2260	  32676	   7fa4	gl_starterkit_project.elf
+  29952	    468	   2260	  32680	   7fa8	gl_starterkit_project.elf
 Finished building: default.size.stdout
  
 
-21:56:50 Build Finished. 0 errors, 0 warnings. (took 74ms)
+17:45:45 Build Finished. 0 errors, 0 warnings. (took 243ms)
 
