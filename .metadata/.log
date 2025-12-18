@@ -4601,3 +4601,39 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -keyring /Users/oleks
 
 !ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2025-12-05 17:45:24.326
 !MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.ui.ide 4 4 2025-12-06 16:44:10.718
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 2 1 2025-12-06 16:44:10.728
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-12-06 16:44:10.728
+!MESSAGE The project description file (.project) for 'Embedded-course' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-12-06 16:44:10.728
+!MESSAGE The project description file (.project) for 'Lab1' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-12-06 16:44:10.728
+!MESSAGE The project description file (.project) for 'Lab2_1' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-12-06 16:44:10.728
+!MESSAGE The project description file (.project) for 'Lab2_2' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-12-06 16:44:10.728
+!MESSAGE The project description file (.project) for 'Lab2_3' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-12-06 16:44:10.728
+!MESSAGE The project description file (.project) for 'Lab2_driver' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-12-06 16:44:10.728
+!MESSAGE The project description file (.project) for 'Lab2_driver2' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-12-06 16:44:10.728
+!MESSAGE The project description file (.project) for 'Lab2_screen' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-12-06 16:44:10.728
+!MESSAGE The project description file (.project) for 'Lab2_t1' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-12-06 16:44:10.728
+!MESSAGE The project description file (.project) for 'Lab2_t2' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-12-06 16:44:10.728
+!MESSAGE The project description file (.project) for 'Lab3_1' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-12-06 16:44:10.728
+!MESSAGE The project description file (.project) for 'Lab3_2' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-12-06 16:44:10.728
+!MESSAGE The project description file (.project) for 'Lab3_t1' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-12-06 16:44:10.728
+!MESSAGE The project description file (.project) for 'Lab3_t2' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2025-12-06 16:44:10.728
+!MESSAGE The project description file (.project) for 'gl_starterkit_project' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
