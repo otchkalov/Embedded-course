@@ -1,0 +1,10 @@
+13:02:21 **** Incremental Build of configuration Debug for project Lab2_driver ****
+make -j16 all 
+arm-none-eabi-size  Lab2_driver.elf 
+   text	   data	    bss	    dec	    hex	filename
+  36428	    124	   4124	  40676	   9ee4	Lab2_driver.elf
+Finished building: default.size.stdout
+ 
+
+13:02:21 Build Finished. 0 errors, 0 warnings. (took 282ms)
+
