@@ -632,3 +632,11 @@
 2025-11-27 20:02:09,695 [INFO] IntegrityCheckThread:100 - exiting critical section [integrity check]
 2025-11-27 20:02:09,695 [INFO] IntegrityCheckThread:103 - End integrity checks thread
 2025-11-27 20:02:44,455 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 
+2026-10-19 00:39:02,513 [INFO] Activator:177 - 
+
+
+2026-10-19 00:39:02,514 [INFO] Activator:178 - !SESSION log4j initialized
+2026-10-19 00:39:04,851 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
+2026-10-19 00:39:05,020 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] Start the detection of the machine's architecture
+2026-10-19 00:39:05,026 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] use arm architecture
+2026-10-19 00:39:05,026 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] Architecture: Apple Silicon (ARM64)
