@@ -5928,3 +5928,51 @@ java.lang.IllegalStateException
 
 !ENTRY org.eclipse.cdt.core 1 0 2026-10-19 00:43:40.823
 !MESSAGE Indexed 'Lab2' (34 sources, 136 headers) in 0.997 sec: 14,238 declarations; 70,754 references; 1 unresolved inclusions; 92 syntax errors; 238 unresolved names (0.28%)
+!SESSION 2026-10-19 00:55:12.953 -----------------------------------------------
+eclipse.buildId=Version 2.2.0
+java.version=21.0.10
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=en_GB
+Framework arguments:  -keyring /Users/oleksiichkalov/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -keyring /Users/oleksiichkalov/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2026-10-19 00:55:31.828
+!MESSAGE Log4j2 initialized with config file /Users/oleksiichkalov/STM32CubeIDE/workspace_2.2.0/Embedded-course/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2026-10-19 00:55:36.903
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2026-10-27 12:50:46.902 -----------------------------------------------
+eclipse.buildId=Version 2.2.0
+java.version=21.0.10
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=en_GB
+Framework arguments:  -keyring /Users/oleksiichkalov/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -keyring /Users/oleksiichkalov/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2026-10-27 12:50:55.850
+!MESSAGE Log4j2 initialized with config file /Users/oleksiichkalov/STM32CubeIDE/workspace_2.2.0/Embedded-course/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2026-10-27 12:51:00.872
+!MESSAGE Started RMI Server, listening on port 41337
+!SESSION 2026-10-28 22:18:25.212 -----------------------------------------------
+eclipse.buildId=Version 2.2.0
+java.version=21.0.10
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=macosx, ARCH=aarch64, WS=cocoa, NL=en_GB
+Framework arguments:  -keyring /Users/oleksiichkalov/.eclipse_keyring
+Command-line arguments:  -os macosx -ws cocoa -arch aarch64 -keyring /Users/oleksiichkalov/.eclipse_keyring
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2026-10-28 22:18:32.167
+!MESSAGE Log4j2 initialized with config file /Users/oleksiichkalov/STM32CubeIDE/workspace_2.2.0/Embedded-course/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2026-10-28 22:18:37.407
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2026-10-28 22:31:02.466
+!MESSAGE SWV configuration; base: 36000000; minDiv: 18; maxDiv: 65535; maxSWO: 2000000; limit: 2000000 => SWO: 1894736; CPU: 25000000; div: 13
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2026-10-28 22:32:05.480
+!MESSAGE SWV configuration; base: 36000000; minDiv: 18; maxDiv: 65535; maxSWO: 2000000; limit: 2000000 => SWO: 1894736; CPU: 25000000; div: 13
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.swv 1 1 2026-10-28 22:36:44.676
+!MESSAGE SWV configuration; base: 36000000; minDiv: 18; maxDiv: 65535; maxSWO: 2000000; limit: 2000000 => SWO: 1894736; CPU: 25000000; div: 13
