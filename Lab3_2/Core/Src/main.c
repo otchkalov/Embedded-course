@@ -52,6 +52,17 @@ const osThreadAttr_t defaultTask_attributes = {
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* USER CODE BEGIN PV */
+static const uint8_t step_sequence[8][4] =
+{
+    {1, 0, 0, 0},
+    {1, 1, 0, 0},
+    {0, 1, 0, 0},
+    {0, 1, 1, 0},
+    {0, 0, 1, 0},
+    {0, 0, 1, 1},
+    {0, 0, 0, 1},
+    {1, 0, 0, 1}
+};
 
 /* USER CODE END PV */
 
@@ -72,6 +83,45 @@ int __io_putchar(int ch)
 	HAL_UART_Transmit(&huart3, (uint8_t *)&ch, 1, 200);
 	return ch;
 }
+/* USER CODE BEGIN 0 */
+
+static void Stepper_SetStep(uint8_t step)
+{
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12,
+                      step_sequence[step][0] ? GPIO_PIN_SET : GPIO_PIN_RESET);
+
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13,
+                      step_sequence[step][1] ? GPIO_PIN_SET : GPIO_PIN_RESET);
+
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14,
+                      step_sequence[step][2] ? GPIO_PIN_SET : GPIO_PIN_RESET);
+
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15,
+                      step_sequence[step][3] ? GPIO_PIN_SET : GPIO_PIN_RESET);
+}
+
+
+static void Stepper_Step(int direction)
+{
+    static int step = 0;
+
+    Stepper_SetStep(step);
+
+    if (direction > 0)
+    {
+        step++;
+        if (step >= 8)
+            step = 0;
+    }
+    else
+    {
+        step--;
+        if (step < 0)
+            step = 7;
+    }
+}
+
+/* USER CODE END 0 */
 
 /* USER CODE END 0 */
 
@@ -140,6 +190,21 @@ int main(void)
   /* add events, ... */
   /* USER CODE END RTOS_EVENTS */
 
+  /*
+  uint32_t n = 0;
+  ^/
+  	/* Infinite loop */
+  /*
+  for(;;)
+  	{
+  	printf("Seconds passed: \n\r ", n++);
+  	if (n > 59)
+  	{
+  		n = 0;
+  	}
+  	osDelay(1000);
+  	}
+  */
   /* Start scheduler */
   osKernelStart();
 
@@ -152,6 +217,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  Stepper_Step(1);
+	    HAL_Delay(5);
+
   }
   /* USER CODE END 3 */
 }
@@ -397,11 +465,9 @@ static void MX_GPIO_Init(void)
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
-	/*
-	uint8_t chr = 0;
-	HAL_StatusTypeDef status = HAL_ERROR;
-	*/
+
 	/* Infinite loop */
+
 	/*
 	for(;;)
 	{
@@ -413,8 +479,9 @@ void StartDefaultTask(void *argument)
 		osDelay(1);
 	}
 	*/
+
 	uint32_t n = 0;
-	/* Infinite loop */
+
 	for(;;)
 	{
 	printf("Seconds passed: %lu \n\r ", n++);

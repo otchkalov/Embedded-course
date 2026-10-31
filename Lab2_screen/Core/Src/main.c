@@ -127,12 +127,15 @@ int main(void)
     char name [3][60] = {"Oleksii", "Svitlana", "Anastasia"};
     char surname [3][60] = {"Chkalov", "Chkalova", "Platonova"};
 
-    lcd_clear();
+    for (i_count = 0; i_count < 3; i_count++)
+    {
+    	lcd_clear();
 
-    lcd_print_string_at(name[i_count], 0, 0);
-    lcd_print_string_at(surname[i_count], 0, 1);
+    	lcd_print_string_at(name[i_count], 0, 0);
+    	lcd_print_string_at(surname[i_count], 0, 1);
 
-    HAL_Delay(2000);
+    	HAL_Delay(2000);
+    }
   }
   /* USER CODE END 3 */
 }

@@ -55,6 +55,7 @@ uint32_t currentClick = 0;
 uint32_t prevClick = 0;
 uint8_t numTickInCycle = 0;
 uint8_t isActive = 0;
+uint8_t sigFromTimer = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -75,6 +76,7 @@ void MX_USB_HOST_Process(void);
 /* USER CODE BEGIN 0 */
 void ctrlLED(void)
 {
+	sigFromTimer = 0;
 	if (isActive)
 	{
 		// If the last bit is 0, the number is divisible by 2
@@ -143,6 +145,9 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
+    if (sigFromTimer) {
+    	ctrlLED();
+    }
   }
   /* USER CODE END 3 */
 }
@@ -513,8 +518,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	{
 		if (++numTickInCycle > 8)
 					numTickInCycle = 1;
-		ctrlLED();
-
+		sigFromTimer = 1;
 	}
 }
 

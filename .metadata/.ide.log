@@ -1,11 +1,5 @@
-2026-10-28 22:18:32,348 [INFO] Activator:177 - 
+2026-10-31 20:35:19,031 [INFO] Activator:176 - 
 
 
-2026-10-28 22:18:32,354 [INFO] Activator:178 - !SESSION log4j initialized
-2026-10-28 22:18:36,190 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
-2026-10-28 22:18:36,948 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] Start the detection of the machine's architecture
-2026-10-28 22:18:36,962 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] use arm architecture
-2026-10-28 22:18:36,963 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] Architecture: Apple Silicon (ARM64)
-2026-10-28 23:31:50,315 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
-2026-10-28 23:31:50,325 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
-2026-10-28 23:31:50,325 [ERROR] ConfigurationRetriever:142 - IOException on connection: sw-center.st.com
+2026-10-31 20:35:19,034 [INFO] Activator:177 - !SESSION log4j initialized
+2026-10-31 20:35:22,356 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 

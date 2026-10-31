@@ -7,18 +7,17 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
-			<item value="/Users/oleksiichkalov/STM32CubeIDE/workspace_2.2.0/workspace_embedded"/>
-			<item value="/Users/oleksiichkalov/STM32CubeIDE/workspace_2.2.0/Embedded-course"/>
+			<item value="/home/oleksii/STM32CubeIDE/workspace_2.0.0/Embedded-course/Lab_4_StepperMotor"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
 		</list>
 		<section name="ExternalProjectImportWizard.dialogBounds">
 			<item key="DIALOG_X_ORIGIN" value="624"/>
-			<item key="DIALOG_Y_ORIGIN" value="97"/>
-			<item key="DIALOG_WIDTH" value="586"/>
-			<item key="DIALOG_HEIGHT" value="687"/>
-			<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+			<item key="DIALOG_Y_ORIGIN" value="171"/>
+			<item key="DIALOG_WIDTH" value="613"/>
+			<item key="DIALOG_HEIGHT" value="781"/>
+			<item key="DIALOG_FONT_NAME" value="1|Ubuntu|11.0|0|GTK|1|"/>
 		</section>
 	</section>
 	<section name="CleanDialogSettings">
